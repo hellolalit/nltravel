@@ -1007,3 +1007,66 @@ section {
         width: 100%;
     }
 }
+
+@media (max-width: 340px) {
+
+    :root {
+        --big-font: 1.5rem;
+        --h2-font: 1rem;
+        --p-font: 0.1rem;
+        transition: .2s;
+    }
+
+    .logo {
+        font-size: 15px !important;
+    }
+
+    .home {
+        /* background-position: 40% !important; */
+        height: 82vh !important;
+    }
+
+    .hometext h1 {
+        font-weight: 800 !important;
+        letter-spacing: 0.5px !important;
+        margin-left: 10px;
+    }
+
+    .ex-text {
+        margin-left: 0px !important;
+    }
+
+    .hometext p {
+        font-size: 14px !important;
+    }
+
+    .text h2 {
+        font-size: 15px;
+    }
+
+    .service-container {
+        flex-direction: column !important;
+    }
+
+    .title h2 {
+        font-size: 30px !important;
+    }
+
+    .package-container1 {
+        flex-direction: column !important;
+    }
+
+    .destination-con .content1 {
+        display: flex;
+        flex-direction: column;
+        transition: 0.2s ease;
+    }
+
+    .news form {
+        width: 300px !important;
+    }
+
+    .list {
+        width: 100%;
+    }
+}
