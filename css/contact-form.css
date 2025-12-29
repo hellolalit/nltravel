@@ -1,0 +1,509 @@
+/* ============================================
+   PHASE 1: CONTACT FORM STYLING
+   ============================================
+   Advanced CSS Concepts Used:
+   1. CSS Grid for responsive form layout - Creates flexible 2-column layout
+      WHY: Grid is perfect for forms, allows auto wrapping on mobile
+   
+   2. CSS Custom Properties (variables) for consistency - Uses --main-color, --text-color
+      WHY: Maintainable, reusable, easy to update brand colors
+   
+   3. Focus states for accessibility - :focus pseudo-class
+      WHY: Shows which field is active, improves keyboard navigation
+   
+   4. Flexbox for alignment - Used in labels, buttons, controls
+      WHY: Perfect for 1D layouts, easier than floats
+   
+   5. Transitions for smooth interactions - transition: all 0.3s ease
+      WHY: Modern feel, better UX, no jarring color changes
+   
+   6. Box-shadow for depth - Creates layers effect
+      WHY: Visual hierarchy, makes form feel elevated
+   
+   7. Media queries for mobile responsiveness
+      WHY: Single column on mobile, maintains usability
+*/
+
+/* Contact form section container */
+.contact-form-section {
+    padding: 80px 11% 50px 11%;
+    background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+    /* WHY gradient background: Creates visual interest while keeping clean look */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-container {
+    width: 100%;
+    max-width: 700px;
+    /* WHY max-width: Limits form width for better readability on ultra-wide screens */
+}
+
+/* Header text styling */
+.contact-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.contact-header h2 {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.contact-header p {
+    color: var(--second-color);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Main form styling */
+.contact-form {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    /* WHY transition: Smooth box-shadow change on hover = better UX */
+}
+
+/* Hover effect on form - Shows interaction feedback */
+.contact-form:hover {
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+    /* WHY: Indicates form is interactive, visual feedback */
+}
+
+/* Fieldset styling - removes browser default styling */
+fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    /* WHY: Fieldsets have default borders, we want clean design */
+}
+
+/* Form group spacing - Uses CSS Grid for responsive layout */
+.form-group {
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* WHY 2 columns: Name and Email side-by-side on desktop */
+    gap: 20px;
+    /* WHY gap: Cleaner spacing than margin, easier to control */
+}
+
+/* Full-width form control */
+.form-control-full {
+    grid-column: 1 / -1;
+    /* WHY: Spans all columns (from 1 to end), makes textarea full-width */
+}
+
+/* Legend hide but keep for screen readers */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+    /* WHY: Accessibility technique - hidden from visual users but read by screen readers */
+}
+
+/* Individual form control styling */
+.form-control {
+    display: flex;
+    flex-direction: column;
+    /* WHY flex: Stacks label above input vertically */
+    gap: 8px;
+    /* WHY gap: Consistent spacing between label and input */
+}
+
+/* Label styling */
+.form-control label {
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    /* WHY align-items: Vertically centers asterisk with text */
+    gap: 4px;
+}
+
+/* Required asterisk styling */
+.required {
+    color: #e74c3c;
+    /* WHY red color: Universal sign for required field */
+    font-weight: 700;
+}
+
+/* Input and textarea base styling */
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form select,
+.contact-form textarea {
+    padding: 12px 15px;
+    /* WHY padding: Makes inputs taller, easier to click on mobile */
+    border: 2px solid #e0e0e0;
+    /* WHY 2px border: Visible but not heavy, gives clear boundaries */
+    border-radius: 8px;
+    /* WHY border-radius: Modern look, matches design system */
+    font-size: 1rem;
+    font-family: inherit;
+    /* WHY inherit: Uses Poppins font like rest of site */
+    transition: all 0.3s ease;
+    /* WHY transition: Smooth color change when focusing */
+    background-color: #fafafa;
+    /* WHY light gray background: Shows input areas clearly */
+}
+
+/* Focus state - shows interaction feedback */
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form input[type="tel"]:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    outline: none;
+    /* WHY outline: none: Removes browser default, we use border instead */
+    border-color: var(--main-color);
+    /* WHY main-color border: Brand color shows focus, matches design */
+    background-color: white;
+    /* WHY white bg: Focused field stands out */
+    box-shadow: 0 0 0 3px rgba(110, 84, 250, 0.1);
+    /* WHY box-shadow: Subtle glow effect without being distracting */
+}
+
+/* Textarea specific styling */
+.contact-form textarea {
+    resize: vertical;
+    /* WHY vertical only: Users can't break layout by resizing horizontally */
+    min-height: 120px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Character count styling */
+.char-count {
+    font-size: 0.85rem;
+    color: var(--second-color);
+    text-align: right;
+    /* WHY right align: Shows "X/500" at end of line */
+}
+
+/* Error state styling */
+.contact-form input.error,
+.contact-form textarea.error,
+.contact-form select.error {
+    border-color: #e74c3c;
+    /* WHY red border: Signals validation error */
+    background-color: #fff5f5;
+    /* WHY light red background: Emphasizes error field */
+}
+
+/* Error message display */
+.error-message {
+    color: #e74c3c;
+    font-size: 0.85rem;
+    display: none;
+    /* WHY display: none: Hidden by default */
+    animation: slideIn 0.3s ease;
+    /* WHY animation: Smooth appearance when error shows */
+}
+
+.error-message.show {
+    display: block;
+    /* WHY .show class: JavaScript adds this when error exists */
+}
+
+/* Checkbox styling */
+.checkbox-control {
+    flex-direction: row;
+    /* WHY row: Checkbox and label on same line */
+    align-items: flex-start;
+    /* WHY flex-start: Aligns to top in case label wraps */
+    gap: 12px;
+}
+
+.contact-form input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-top: 4px;
+    /* WHY margin-top: Aligns checkbox with label text baseline */
+    cursor: pointer;
+    accent-color: var(--main-color);
+    /* WHY accent-color: Colors checkbox check mark with brand color */
+}
+
+.checkbox-label {
+    font-weight: 400;
+    cursor: pointer;
+    /* WHY cursor: pointer: Shows checkbox is clickable */
+    font-size: 0.95rem;
+}
+
+/* Form actions (buttons) */
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    grid-column: 1 / -1;
+    /* WHY grid-column: Spans full width on form grid */
+}
+
+/* Submit button styling */
+.btn-submit {
+    flex: 1;
+    /* WHY flex: 1: Takes available space, stays responsive */
+    padding: 14px 20px;
+    background: var(--main-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /* WHY all: Transitions background, transform, and shadow together */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* WHY flex alignment: Centers icon next to text */
+    gap: 8px;
+}
+
+.btn-submit:hover {
+    background: #5a3ecf;
+    /* WHY darker color: Shows button is interactive */
+    transform: translateY(-2px);
+    /* WHY translateY: Lifts button, gives "clickable" feel */
+    box-shadow: 0 8px 20px rgba(110, 84, 250, 0.3);
+    /* WHY box-shadow: More pronounced shadow on hover */
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+    /* WHY reset transform: Button returns to normal when clicked */
+}
+
+/* Reset button styling */
+.btn-reset {
+    padding: 14px 20px;
+    background: #f0f0f0;
+    color: var(--text-color);
+    border: 2px solid #e0e0e0;
+    /* WHY border: Shows it's secondary action vs submit */
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-reset:hover {
+    background: #e8e8e8;
+    border-color: #d0d0d0;
+    /* WHY: Subtle hover effect, doesn't distract from submit button */
+}
+
+/* Form status messages */
+.form-status {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    animation: slideIn 0.3s ease;
+}
+
+.status-message {
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.status-message.success {
+    background: #d4edda;
+    /* WHY green: Success = positive */
+    color: #155724;
+    border-left: 4px solid #28a745;
+    /* WHY left border: Draws attention to success message */
+}
+
+.status-message.error {
+    background: #f8d7da;
+    /* WHY red: Error = negative */
+    color: #721c24;
+    border-left: 4px solid #f5222d;
+}
+
+/* Contact info cards */
+.contact-info-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* WHY repeat(3, 1fr): Creates 3 equal columns */
+    gap: 20px;
+    margin-top: 50px;
+}
+
+.info-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    /* WHY: Smooth animation on hover */
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    /* WHY: Lifts card on hover, shows interactivity */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    /* WHY: Stronger shadow makes card appear higher */
+}
+
+.info-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.info-card h4 {
+    color: var(--text-color);
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.info-card p {
+    color: var(--second-color);
+    font-size: 0.95rem;
+}
+
+/* Animation for sliding in messages */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        /* WHY: Message invisible initially */
+        transform: translateY(-10px);
+        /* WHY: Message comes from above */
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - Contact Form
+   ============================================
+   WHY separate media queries:
+   - Each breakpoint has different constraints
+   - Mobile: Limited width, single column
+   - Tablet: Medium width, some room
+   - Desktop: Full width, multiple columns
+*/
+
+@media (max-width: 1400px) {
+    .contact-form-section {
+        padding: 60px 5% 40px 5%;
+        /* WHY: Smaller padding on smaller screens */
+    }
+
+    .contact-form {
+        padding: 30px;
+        /* WHY: Less padding in form container */
+    }
+
+    .contact-header h2 {
+        font-size: 2rem;
+        /* WHY: Slightly smaller heading */
+    }
+}
+
+@media (max-width: 1020px) {
+
+    /* Tablet view */
+    .contact-form-section {
+        padding: 50px 5% 40px 5%;
+    }
+
+    .form-group {
+        grid-template-columns: 1fr;
+        /* WHY: Single column for tablet - easier to scroll */
+        gap: 15px;
+    }
+
+    .form-control-full {
+        grid-column: 1;
+    }
+
+    .contact-info-cards {
+        grid-template-columns: repeat(2, 1fr);
+        /* WHY: 2 columns on tablet instead of 3 */
+        gap: 15px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    /* Mobile view */
+    .contact-form-section {
+        padding: 40px 20px;
+        /* WHY: Smaller padding saves space on mobile */
+    }
+
+    .contact-form {
+        padding: 20px;
+        /* WHY: Less padding on mobile */
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        /* WHY: Lighter shadow on mobile, less visually heavy */
+    }
+
+    .contact-header h2 {
+        font-size: 1.5rem;
+        /* WHY: Smaller heading for mobile */
+    }
+
+    .contact-header p {
+        font-size: 0.9rem;
+        /* WHY: Slightly smaller text to fit screen */
+    }
+
+    .form-control input,
+    .form-control textarea,
+    .form-control select {
+        font-size: 16px;
+        /* WHY CRITICAL: iOS requires 16px font size to prevent zoom on focus
+		   If smaller, iOS auto-zooms the input, disrupting UX */
+    }
+
+    .form-actions {
+        flex-direction: column;
+        /* WHY: Stack buttons vertically on mobile */
+        gap: 10px;
+    }
+
+    .btn-submit,
+    .btn-reset {
+        width: 100%;
+        /* WHY: Full-width buttons on mobile, easier to tap */
+    }
+
+    .contact-info-cards {
+        grid-template-columns: 1fr;
+        /* WHY: Single column on mobile */
+        gap: 12px;
+    }
+
+    .info-card {
+        padding: 20px;
+        /* WHY: Less padding saves space */
+    }
+
+    .info-icon {
+        font-size: 2rem;
+        /* WHY: Smaller icons on mobile */
+    }
+}
