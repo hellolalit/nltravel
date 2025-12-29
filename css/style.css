@@ -20,7 +20,7 @@
     --text-color: #221314;
     --second-color: #5a7184;
     --main-color: #6e54fa;
-    --big-font: 6rem;
+    --big-font: 6.2rem;
     --h2-font: 3rem;
     --p-font: 1.1rem;
 }
@@ -93,54 +93,155 @@ section {
     position: relative;
     width: 100%;
     height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    overflow: hidden;
+}
+
+.home::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: url(../assets/img/sunset-g1016517c5_1920.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: 35% 5%;
+    background-position: center;
+    filter: blur(5px);
+    z-index: 1;
+}
+
+.home-container {
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: 1fr 1fr;
     align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.hometext {
+    padding-left: 11%;
+    padding-right: 40px;
+    z-index: 10;
+    max-width: 550px;
+    animation: slideInLeft 0.8s ease-out;
+}
+
+.home-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 75%;
+    padding-right: 11%;
+    animation: slideInRight 0.8s ease-out;
+}
+
+.home-image img {
+    border-radius: 1rem;
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(1.1) contrast(1.05);
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .hometext h1 {
+    margin-top: 7rem;
     font-size: var(--big-font);
-    line-height: 1.2;
+    line-height: 1.1;
     color: var(--bg-color);
-    letter-spacing: 6px;
-    margin-left: 40px;
+    letter-spacing: 1rem;
+    margin-bottom: 0.1rem;
     font-family: havanasunset !important;
 }
 
 .ex-text {
-    margin-left: 50px !important;
+    display: block;
     font-size: var(--big-font);
-    line-height: 1.2;
+    line-height: 1.3;
     color: var(--bg-color);
-    letter-spacing: 15px;
-    margin-left: 40px;
-    margin-bottom: 20px;
+    letter-spacing: 1rem;
+    margin-bottom: 1rem;
     font-family: havanasunset !important;
 }
 
-.hometext p {
-    color: white;
-    font-size: 17px;
-    font-weight: 300;
-    line-height: 38px;
-    margin-top: 20px;
-    margin-bottom: 50px;
+.hometext .main-description {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.4;
+    margin-bottom: 18px;
+}
+
+.features {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    margin-bottom: 0.5rem;
+    padding: 10px 0;
+}
+
+.features span {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 16px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.cta-section {
+    margin-top: 30px;
+}
+
+.cta-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 20px !important;
 }
 
 .home-button {
     display: inline-block;
     font-size: 16px;
-    padding: 10px 20px;
+    padding: 12px 28px;
     background: #fff;
-    color: var(--main-color);
+    color: #1a1a2e;
     border-radius: 7px;
-    transition: ease .40s;
+    transition: all 0.4s ease;
     border: none;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 .home-button:hover {
@@ -680,8 +781,20 @@ section {
 
     .home {
         height: 100vh !important;
-        background-position: 35% 5%;
         transition: 0.2s !important;
+    }
+
+    .home-container {
+        grid-template-columns: 1fr 0.8fr;
+    }
+
+    .hometext {
+        padding-left: 5%;
+        padding-right: 20px;
+    }
+
+    .home-image {
+        padding-right: 5%;
     }
 
     /* Services Section */
@@ -840,7 +953,38 @@ section {
 
     .home {
         /* background-position: 40% !important; */
-        height: 79vh !important;
+        height: auto !important;
+        min-height: 100vh;
+    }
+
+    .home-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        padding: 80px 20px 40px 20px;
+        gap: 30px;
+    }
+
+    .hometext {
+        padding-left: 0;
+        padding-right: 0;
+        max-width: 100%;
+        z-index: 10;
+        order: 1;
+    }
+
+    .home-image {
+        padding-right: 0;
+        padding-left: 0;
+        height: 350px;
+        width: 100%;
+        order: 2;
+    }
+
+    .home-image img {
+        max-width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 1rem;
     }
 
     .hometext h1 {
@@ -897,143 +1041,40 @@ section {
 
     .home {
         /* background-position: 40% !important; */
-        height: 82vh !important;
+        height: auto !important;
+        min-height: 100vh;
+    }
+
+    .home-container {
+        grid-template-columns: 1fr;
+        padding: 70px 15px 40px 15px;
+        gap: 25px;
+    }
+
+    .hometext {
+        padding-left: 0;
+        padding-right: 0;
     }
 
     .hometext h1 {
         font-weight: 800 !important;
         letter-spacing: 0.5px !important;
-        margin-left: 10px;
+        margin-left: 0;
     }
 
     .ex-text {
         margin-left: 0px !important;
     }
 
-    .hometext p {
-        font-size: 14px !important;
-    }
-
-    .text h2 {
-        font-size: 15px;
-    }
-
-    .service-container {
-        flex-direction: column !important;
-    }
-
-    .title h2 {
-        font-size: 30px !important;
-    }
-
-    .package-container1 {
-        flex-direction: column !important;
-    }
-
-    .destination-con .content1 {
-        display: flex;
-        flex-direction: column;
-        transition: 0.2s ease;
-    }
-
-    .news form {
-        width: 300px !important;
-    }
-
-    .list {
+    .home-image {
+        height: 280px;
         width: 100%;
     }
-}
 
-@media (max-width: 340px) {
-
-    :root {
-        --big-font: 1.5rem;
-        --h2-font: 1rem;
-        --p-font: 0.1rem;
-        transition: .2s;
-    }
-
-    .logo {
-        font-size: 15px !important;
-    }
-
-    .home {
-        /* background-position: 40% !important; */
-        height: 82vh !important;
-    }
-
-    .hometext h1 {
-        font-weight: 800 !important;
-        letter-spacing: 0.5px !important;
-        margin-left: 10px;
-    }
-
-    .ex-text {
-        margin-left: 0px !important;
-    }
-
-    .hometext p {
-        font-size: 14px !important;
-    }
-
-    .text h2 {
-        font-size: 15px;
-    }
-
-    .service-container {
-        flex-direction: column !important;
-    }
-
-    .title h2 {
-        font-size: 30px !important;
-    }
-
-    .package-container1 {
-        flex-direction: column !important;
-    }
-
-    .destination-con .content1 {
-        display: flex;
-        flex-direction: column;
-        transition: 0.2s ease;
-    }
-
-    .news form {
-        width: 300px !important;
-    }
-
-    .list {
-        width: 100%;
-    }
-}
-
-@media (max-width: 340px) {
-
-    :root {
-        --big-font: 1.5rem;
-        --h2-font: 1rem;
-        --p-font: 0.1rem;
-        transition: .2s;
-    }
-
-    .logo {
-        font-size: 15px !important;
-    }
-
-    .home {
-        /* background-position: 40% !important; */
-        height: 82vh !important;
-    }
-
-    .hometext h1 {
-        font-weight: 800 !important;
-        letter-spacing: 0.5px !important;
-        margin-left: 10px;
-    }
-
-    .ex-text {
-        margin-left: 0px !important;
+    .home-image img {
+        max-width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     .hometext p {
